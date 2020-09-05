@@ -1,0 +1,7 @@
+build/
+.idea/
+vendor/
+
+.gitlab-ci.yml
+
+!.gitkeep
