@@ -26,8 +26,8 @@ func DownloadImage(url string) (fileName string, err error) {
 	rawImage := req.Body()
 	//newImage, err := ImageToJPG(rawImage)
 	log.Infof("compute image(%v) md5", url)
-	fileName = fmt.Sprintf("%x", md5.Sum(rawImage)) + "."
-	GetImageExtFromHeader(req.RawResponse.Header.Get("Content-Type"))
+	fileName = fmt.Sprintf("%x", md5.Sum(rawImage)) + "." +
+		GetImageExtFromHeader(req.RawResponse.Header.Get("Content-Type"))
 	if err != nil {
 		return
 	}
