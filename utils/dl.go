@@ -18,7 +18,9 @@ func DownloadImage(url string) (fileName string, err error) {
 		return
 	}
 
-	req, err := client.R().SetHeader("Referrer", u.Host).Get(url)
+	req, err := client.R().SetHeader("Referer", u.Scheme+"://"+u.Host).
+		SetHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36").
+		Get(url)
 	if err != nil {
 		return
 	}
