@@ -3,7 +3,6 @@ package service
 import (
 	"git.runode.com/littleplus/image-reverse-proxy/utils"
 	"github.com/gin-gonic/gin"
-	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -18,10 +17,10 @@ func Search(c *gin.Context) {
 		e = "saucenao"
 	}
 
-	fileName := uuid.NewV4().String() + ".jpg"
-	err := utils.DownloadImage(url, fileName)
-	if err != nil {
-		log.Errorf("ImageDownloadError: %v", err)
+	//fileName := uuid.NewV4().String() + ".jpg"
+	fileName, err := utils.DownloadImage(url)
+	if err != nil || fileName == "" {
+		log.Errorf("ImageDownloadError: file(%v), err(%v)", fileName, err)
 		c.JSON(500, "server error")
 	}
 
